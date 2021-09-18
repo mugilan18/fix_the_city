@@ -1,0 +1,4 @@
+.bar {
+background: rgb(242,228,192);
+background: linear-gradient(90deg, rgba(242,228,192,1) 0%, rgba(242,228,192,1) 74%, rgba(242,228,192,1) 100%);
+}

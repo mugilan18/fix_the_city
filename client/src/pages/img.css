@@ -1,0 +1,27 @@
+.div {
+    background: url('./complain.jpeg');
+    background-repeat: no-repeat;
+    height:200px;
+    width:300px;
+} 
+ .div:hover {
+    background: url('./fix.png');
+    background-repeat: no-repeat;
+    height:200px;
+    width:300px;
+
+   
+}
+.title{
+    position: absolute;
+    bottom: 250px;
+    width:400px;
+    left :800px
+}
+.mainback{
+    background: linear-gradient(90deg, rgba(138,138,146,1) 0%, rgba(166,184,185,0.13188603077949934) 35%, rgba(220,220,220,1) 100%);
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+   
+}

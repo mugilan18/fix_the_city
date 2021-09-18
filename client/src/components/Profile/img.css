@@ -1,0 +1,7 @@
+.mainback{
+    background: rgb(218,165,32);
+    background: linear-gradient(90deg, rgba(218,165,32,1) 0%, rgba(218,165,32,1) 74%, rgba(218,165,32,1) 100%);
+    /* background: linear-gradient(90deg, rgba(138,138,146,1) 0%, rgba(166,184,185,0.13188603077949934) 35%, rgba(220,220,220,1) 100%); */
+    max-width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,72 @@
+version: "3.3"
+
+services:
+  proxy:
+    restart: always
+    build:
+      context: ./reverse_proxy
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    networks:
+      app-network:
+        ipv4_address: 172.20.0.4
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: myapp-server
+    container_name: myapp-node-server
+    command: /usr/src/app/node_modules/.bin/nodemon server.js
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file: ./server/.env
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+    environment:
+      - NODE_ENV=development
+    networks:
+      app-network:
+        ipv4_address: 172.20.0.3
+  mongo:
+    image: mongo
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      app-network:
+        ipv4_address: 172.20.0.5
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: myapp-client
+    container_name: myapp-react-client
+    command: /usr/src/app/node_modules/.bin/nodemon app.js
+    volumes:
+      - ./client/:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    networks:
+      app-network:
+        ipv4_address: 172.20.0.2
+
+networks:
+  app-network:
+    ipam: 
+      config:
+        - subnet: 172.20.0.0/24
+        
+
+volumes:
+  data-volume:
+  node_modules:
+  web-root:
+    driver: local
